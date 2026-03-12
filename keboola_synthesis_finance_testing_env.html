@@ -1,0 +1,1167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Keboola Strategy Synthesis · Pavel Deep Research Engine · March 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f0f0eb;
+    --panel: #e8e8e2;
+    --line: #a4aaa8;
+    --navy: #1a1a2c;
+    --dark: #333542;
+    --blue: #2864dc;
+    --violet: #783cdc;
+    --teal: #147864;
+    --orange: #8c503c;
+    --white: #fafaf7;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    font-family: 'IBM Plex Sans', sans-serif;
+    color: var(--navy);
+    font-size: 15px;
+    line-height: 1.65;
+  }
+
+  /* ── PAGE CHROME ────────────────────────────────────────── */
+  .doc-header {
+    background: var(--navy);
+    padding: 48px 80px 44px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    border-bottom: 1px solid #2a2a40;
+  }
+
+  .doc-header .eyebrow {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    color: var(--line);
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+
+  .doc-header h1 {
+    font-size: 32px;
+    font-weight: 300;
+    color: #fff;
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+  }
+
+  .doc-header h1 strong {
+    font-weight: 600;
+    color: #fff;
+  }
+
+  .doc-header .meta {
+    text-align: right;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: var(--line);
+    line-height: 2;
+  }
+
+  .doc-header .meta span {
+    display: block;
+  }
+
+  /* ── TOC ───────────────────────────────────────────────── */
+  .toc-strip {
+    background: var(--dark);
+    padding: 18px 80px;
+    display: flex;
+    gap: 32px;
+    align-items: center;
+    overflow-x: auto;
+  }
+
+  .toc-strip a {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    color: var(--line);
+    text-decoration: none;
+    text-transform: uppercase;
+    white-space: nowrap;
+    transition: color 0.15s;
+  }
+
+  .toc-strip a:hover { color: #fff; }
+  .toc-strip .sep { color: #3a3a52; }
+
+  /* ── LAYOUT ─────────────────────────────────────────────── */
+  .page { max-width: 1100px; margin: 0 auto; padding: 64px 80px; }
+
+  /* ── SECTION HEADERS ────────────────────────────────────── */
+  .section-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    color: var(--line);
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+
+  h2 {
+    font-size: 26px;
+    font-weight: 300;
+    letter-spacing: -0.02em;
+    color: var(--navy);
+    margin-bottom: 28px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--line);
+  }
+
+  h2 strong { font-weight: 600; }
+
+  h3 {
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--dark);
+    margin-bottom: 12px;
+    margin-top: 32px;
+  }
+
+  p {
+    color: var(--dark);
+    margin-bottom: 16px;
+    max-width: 740px;
+    font-weight: 300;
+  }
+
+  .section-divider {
+    border: none;
+    border-top: 1px solid var(--line);
+    margin: 64px 0;
+    opacity: 0.4;
+  }
+
+  /* ── CALLOUT BOXES ──────────────────────────────────────── */
+  .callout {
+    border-radius: 8px;
+    padding: 24px 28px;
+    margin: 28px 0;
+    border: 1px solid transparent;
+  }
+
+  .callout-navy {
+    background: var(--navy);
+    color: #fff;
+    border-color: var(--navy);
+  }
+
+  .callout-navy p { color: rgba(255,255,255,0.8); max-width: none; }
+  .callout-navy strong { color: #fff; font-weight: 600; }
+
+  .callout-blue {
+    background: var(--white);
+    border-color: var(--blue);
+    border-left: 3px solid var(--blue);
+    border-radius: 4px;
+  }
+
+  .callout-orange {
+    background: var(--white);
+    border-left: 3px solid var(--orange);
+    border-radius: 4px;
+  }
+
+  .callout-teal {
+    background: var(--white);
+    border-left: 3px solid var(--teal);
+    border-radius: 4px;
+  }
+
+  .callout-violet {
+    background: var(--white);
+    border-left: 3px solid var(--violet);
+    border-radius: 4px;
+  }
+
+  /* ── TRUTH CARDS ────────────────────────────────────────── */
+  .truth-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin: 28px 0;
+  }
+
+  .truth-card {
+    background: var(--white);
+    border-radius: 8px;
+    padding: 22px 24px;
+    border: 1px solid var(--panel);
+  }
+
+  .truth-card .number {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: var(--line);
+    margin-bottom: 8px;
+    display: block;
+  }
+
+  .truth-card .claim {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--navy);
+    margin-bottom: 10px;
+    line-height: 1.45;
+  }
+
+  .truth-card .detail {
+    font-size: 13px;
+    font-weight: 300;
+    color: var(--dark);
+    line-height: 1.55;
+  }
+
+  .truth-card .confidence {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    color: var(--line);
+    margin-top: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  .truth-card.blue .claim { color: var(--blue); }
+  .truth-card.violet .claim { color: var(--violet); }
+  .truth-card.teal .claim { color: var(--teal); }
+  .truth-card.orange .claim { color: var(--orange); }
+
+  /* ── TAGS ───────────────────────────────────────────────── */
+  .tag {
+    display: inline-block;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.08em;
+    padding: 3px 10px;
+    border-radius: 20px;
+    text-transform: uppercase;
+    margin-right: 6px;
+    margin-bottom: 4px;
+  }
+
+  .tag-blue { background: rgba(40,100,220,0.1); color: var(--blue); }
+  .tag-violet { background: rgba(120,60,220,0.1); color: var(--violet); }
+  .tag-teal { background: rgba(20,120,100,0.1); color: var(--teal); }
+  .tag-orange { background: rgba(140,80,60,0.1); color: var(--orange); }
+  .tag-navy { background: rgba(26,26,44,0.1); color: var(--navy); }
+
+  /* ── CONSTRAINT TABLE ───────────────────────────────────── */
+  .constraint-list {
+    list-style: none;
+    margin: 20px 0;
+  }
+
+  .constraint-list li {
+    display: flex;
+    align-items: baseline;
+    gap: 16px;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--panel);
+  }
+
+  .constraint-list li:last-child { border-bottom: none; }
+
+  .constraint-rank {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    color: var(--line);
+    min-width: 28px;
+  }
+
+  .constraint-label {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--navy);
+    min-width: 220px;
+  }
+
+  .constraint-detail {
+    font-size: 13px;
+    font-weight: 300;
+    color: var(--dark);
+    line-height: 1.5;
+  }
+
+  /* ── OPPORTUNITY MATRIX ────────────────────────────────── */
+  .matrix-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+    margin: 20px 0;
+  }
+
+  .matrix-table th {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--line);
+    text-align: left;
+    padding: 10px 14px;
+    border-bottom: 1px solid var(--line);
+    font-weight: 400;
+  }
+
+  .matrix-table td {
+    padding: 12px 14px;
+    border-bottom: 1px solid var(--panel);
+    vertical-align: top;
+    color: var(--dark);
+    font-weight: 300;
+  }
+
+  .matrix-table tr:last-child td { border-bottom: none; }
+  .matrix-table tr:hover td { background: var(--white); }
+
+  .matrix-table .opp-name {
+    font-weight: 500;
+    color: var(--navy);
+    font-size: 13px;
+  }
+
+  .pill {
+    display: inline-block;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    padding: 2px 8px;
+    border-radius: 4px;
+    letter-spacing: 0.04em;
+  }
+
+  .pill-h { background: rgba(20,120,100,0.12); color: var(--teal); }
+  .pill-m { background: rgba(40,100,220,0.1); color: var(--blue); }
+  .pill-l { background: rgba(140,80,60,0.1); color: var(--orange); }
+
+  /* ── INVESTOR Q&A ───────────────────────────────────────── */
+  .qa-block {
+    margin: 24px 0;
+    background: var(--white);
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid var(--panel);
+  }
+
+  .qa-q {
+    background: var(--navy);
+    padding: 16px 24px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #fff;
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+  }
+
+  .qa-q .q-num {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    color: var(--line);
+    flex-shrink: 0;
+  }
+
+  .qa-a {
+    padding: 18px 24px;
+    font-size: 13px;
+    font-weight: 300;
+    color: var(--dark);
+    line-height: 1.6;
+  }
+
+  .qa-a .verdict {
+    display: inline-block;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.08em;
+    color: var(--teal);
+    text-transform: uppercase;
+    margin-top: 10px;
+    display: block;
+  }
+
+  /* ── EXEC COMPRESSION ───────────────────────────────────── */
+  .compression-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 2px;
+    margin: 28px 0;
+    border-radius: 10px;
+    overflow: hidden;
+  }
+
+  .comp-cell {
+    background: var(--white);
+    padding: 24px 22px;
+    border: 1px solid var(--panel);
+  }
+
+  .comp-cell .cell-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    color: var(--line);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 10px;
+  }
+
+  .comp-cell .cell-content {
+    font-size: 14px;
+    font-weight: 400;
+    color: var(--navy);
+    line-height: 1.5;
+  }
+
+  .comp-cell.highlight { background: var(--navy); }
+  .comp-cell.highlight .cell-label { color: rgba(164,170,168,0.6); }
+  .comp-cell.highlight .cell-content { color: #fff; }
+
+  /* ── QUOTE PULL ─────────────────────────────────────────── */
+  .pull-quote {
+    border-left: 2px solid var(--navy);
+    padding: 20px 28px;
+    margin: 32px 0;
+    background: var(--white);
+    border-radius: 0 8px 8px 0;
+  }
+
+  .pull-quote p {
+    font-size: 17px;
+    font-weight: 300;
+    font-style: italic;
+    color: var(--navy);
+    line-height: 1.55;
+    max-width: 680px;
+    margin-bottom: 10px;
+  }
+
+  .pull-quote cite {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: var(--line);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  /* ── SYSTEM MAP SVG SECTION ─────────────────────────────── */
+  .diagram-container {
+    background: var(--white);
+    border-radius: 10px;
+    padding: 40px;
+    margin: 28px 0;
+    border: 1px solid var(--panel);
+  }
+
+  .diagram-title {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    color: var(--line);
+    text-transform: uppercase;
+    margin-bottom: 28px;
+  }
+
+  /* ── FOOTER ─────────────────────────────────────────────── */
+  .doc-footer {
+    background: var(--navy);
+    padding: 32px 80px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .doc-footer p {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: var(--line);
+    max-width: none;
+    margin: 0;
+  }
+
+  /* ── DECISION MEMORY LOOP ───────────────────────────────── */
+  .loop-row {
+    display: flex;
+    align-items: stretch;
+    gap: 0;
+    margin: 28px 0;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid var(--panel);
+  }
+
+  .loop-step {
+    flex: 1;
+    padding: 20px 18px;
+    background: var(--white);
+    border-right: 1px solid var(--panel);
+    position: relative;
+  }
+
+  .loop-step:last-child { border-right: none; }
+
+  .loop-step .step-num {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    color: var(--line);
+    display: block;
+    margin-bottom: 6px;
+    letter-spacing: 0.1em;
+  }
+
+  .loop-step .step-name {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--navy);
+    margin-bottom: 6px;
+    line-height: 1.3;
+  }
+
+  .loop-step .step-detail {
+    font-size: 12px;
+    font-weight: 300;
+    color: var(--dark);
+    line-height: 1.5;
+  }
+
+  .loop-step.exists { border-top: 2px solid var(--teal); }
+  .loop-step.missing { border-top: 2px solid var(--orange); background: rgba(140,80,60,0.03); }
+  .loop-step.partial { border-top: 2px solid var(--blue); }
+
+  .step-badge {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 2px 7px;
+    border-radius: 3px;
+    margin-top: 8px;
+    display: inline-block;
+  }
+
+  .badge-exists { background: rgba(20,120,100,0.1); color: var(--teal); }
+  .badge-missing { background: rgba(140,80,60,0.1); color: var(--orange); }
+  .badge-partial { background: rgba(40,100,220,0.1); color: var(--blue); }
+
+  /* ── ASSUMPTION ROWS ────────────────────────────────────── */
+  .assumption-row {
+    background: var(--white);
+    border-radius: 6px;
+    padding: 20px 24px;
+    margin: 12px 0;
+    border: 1px solid var(--panel);
+    display: grid;
+    grid-template-columns: 1fr 2fr 120px;
+    gap: 24px;
+    align-items: start;
+  }
+
+  .assumption-name {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--navy);
+  }
+
+  .assumption-detail {
+    font-size: 13px;
+    font-weight: 300;
+    color: var(--dark);
+    line-height: 1.55;
+  }
+
+  .fragility-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    text-align: right;
+  }
+
+  .fragility-high { color: var(--orange); }
+  .fragility-medium { color: var(--blue); }
+  .fragility-low { color: var(--teal); }
+
+  /* responsive */
+  @media (max-width: 900px) {
+    .doc-header, .toc-strip, .page, .doc-footer { padding-left: 28px; padding-right: 28px; }
+    .truth-grid { grid-template-columns: 1fr; }
+    .compression-grid { grid-template-columns: 1fr 1fr; }
+    .assumption-row { grid-template-columns: 1fr; gap: 8px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="doc-header">
+  <div>
+    <div class="eyebrow">Pavel Deep Research Engine · Keboola Strategy</div>
+    <h1><strong>The Simulation Moat</strong><br>Strategy Synthesis · March 2026</h1>
+  </div>
+  <div class="meta">
+    <span>Sources: 7 repositories + founder transcripts</span>
+    <span>Sessions: March 11–12, 2026</span>
+    <span>Framework: Pavel Deep Research Engine</span>
+    <span>Version: 1.0 final</span>
+  </div>
+</header>
+
+<!-- TOC STRIP -->
+<nav class="toc-strip">
+  <a href="#thesis">Thesis</a><span class="sep">/</span>
+  <a href="#truths">Hidden Truths</a><span class="sep">/</span>
+  <a href="#sysmap">System Map</a><span class="sep">/</span>
+  <a href="#assumptions">Assumptions</a><span class="sep">/</span>
+  <a href="#constraint">Real Constraint</a><span class="sep">/</span>
+  <a href="#memory">Decision Memory</a><span class="sep">/</span>
+  <a href="#cfo">CFO Beachhead</a><span class="sep">/</span>
+  <a href="#kids">KIDS Proof Point</a><span class="sep">/</span>
+  <a href="#investors">Destroy Test</a><span class="sep">/</span>
+  <a href="#compression">Compression</a>
+</nav>
+
+<main class="page">
+
+  <!-- CONTEXT -->
+  <section id="context" style="margin-bottom: 56px;">
+    <div class="section-label">Research Context</div>
+    <h2>What This Document Is</h2>
+    <p>This is the compressed output of a multi-session deep research engagement applying the Pavel Deep Research Engine to Keboola's AI strategy. The research began with a LinkedIn thesis on context infrastructure, traced through six founder conversation screenshots, examined four GitHub repositories in detail, reviewed the internal <em>KIDS</em> analytics project, and analyzed the Keboola Verity CFO pitch deck.</p>
+    <p>Every conclusion was stress-tested through inversion. What began as a context infrastructure thesis collapsed into a sharper claim. What appeared to be a build problem turned out to be an assembly problem. What was positioned as future infrastructure was found to already exist in production.</p>
+
+    <div class="callout callout-navy" style="margin-top: 32px;">
+      <p style="font-size: 16px; font-weight: 300; line-height: 1.6; margin-bottom: 0;"><strong>The central finding:</strong> The simulation environment already exists inside Keboola Connection's branching infrastructure. The strategic moat is not a future build — it is a present capability that has not been named, positioned, or instrumented for decision trace capture.</p>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <!-- THESIS -->
+  <section id="thesis">
+    <div class="section-label">Opening Thesis → Inversion</div>
+    <h2>The Thesis <strong>&amp; Why It's Insufficient</strong></h2>
+
+    <div class="pull-quote">
+      <p>"Models are a commodity. The future AI moat is context infrastructure — not the model itself, but the layer that prepares data, context, and operational state for the model to act on."</p>
+      <cite>Pavel Dvorak · LinkedIn · March 2026</cite>
+    </div>
+
+    <p>The thesis is correct in direction. DeepSeek proved frontier-level performance at a fraction of the cost. Open-source now accounts for ~30% of enterprise AI usage. Switching cost between model providers approaches zero. Enterprise adoption is blocked at context and trust, not at model capability.</p>
+
+    <p>The problem with this reading: context infrastructure is also becoming a feature. RAG, retrieval, metadata graphs — all being absorbed into incumbent platforms. Snowflake has Cortex. Databricks has Unity Catalog. The layer above the model is being commoditized from below.</p>
+
+    <div class="callout callout-blue" style="padding: 24px 28px; margin: 28px 0;">
+      <h3 style="margin-top: 0; color: var(--blue);">The Sharper Claim</h3>
+      <p style="margin-bottom: 8px;">The simulation environment is the scarce resource. The agent is the interface. The operational graph that makes simulation trustworthy is the moat.</p>
+      <p style="margin-bottom: 0;">Simulation requires live operational graph, deep instrumentation, and months of integration work. It cannot be approximated by a long context window. It cannot be built quickly by an incumbent whose data model treats tables but not workflows.</p>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <!-- HIDDEN TRUTHS -->
+  <section id="truths">
+    <div class="section-label">Step 3 · Pavel Research Engine</div>
+    <h2>Hidden <strong>Truths</strong></h2>
+
+    <div class="truth-grid">
+      <div class="truth-card blue">
+        <span class="number">01 / Bottleneck</span>
+        <div class="claim">The bottleneck in enterprise AI is not retrieval. It is trust in proposed actions.</div>
+        <div class="detail">Enterprises haven't failed to adopt AI because of poor retrieval or weak models. They've failed because the output of an AI action is an action — and no one knows what it will break before it runs. Simulation replaces "trust the agent" with "see the consequence before you commit."</div>
+        <div class="confidence">Confidence: Known · Direct evidence from failure patterns</div>
+      </div>
+
+      <div class="truth-card violet">
+        <span class="number">02 / Memory</span>
+        <div class="claim">Decision traces are more valuable than operational memory — and currently being destroyed.</div>
+        <div class="detail">Operational memory records what happened. Decision memory records how the organization reasoned: agent proposed action A, simulation showed consequence B, engineer approved A-prime because of constraint C. Every day the simulation step doesn't run, decision traces that can never be recovered are permanently destroyed.</div>
+        <div class="confidence">Confidence: Known · Confirmed in KIDS session transcript architecture</div>
+      </div>
+
+      <div class="truth-card teal">
+        <span class="number">03 / Compounding</span>
+        <div class="claim">Simulation infrastructure is irreplaceable and compounds in one direction only.</div>
+        <div class="detail">A competitor starting from zero cannot simulate another organization's pipelines correctly. Fidelity depends on instrumentation depth — how completely the operational infrastructure is connected. Getting to production-grade fidelity takes months to instrument and years to make reliable. The lead compounds.</div>
+        <div class="confidence">Confidence: Likely · Supported by instrumentation depth analysis</div>
+      </div>
+
+      <div class="truth-card orange">
+        <span class="number">04 / Already Built</span>
+        <div class="claim">The simulation environment is already running. It just isn't described that way.</div>
+        <div class="detail">Keboola Connection development branches are full-isolation, on-demand materialized copies of the production environment. Every AI action can run inside a branch. Production is untouched until explicit merge approval. A diff view shows exactly what changes. The missing layer is the AI-native framing and the decision trace capture — not the infrastructure.</div>
+        <div class="confidence">Confidence: Known · Verified in Connection branching architecture</div>
+      </div>
+
+      <div class="truth-card blue">
+        <span class="number">05 / KIDS</span>
+        <div class="claim">The CFO product is already running in production — as Keboola's internal analytics system.</div>
+        <div class="detail">The KIDS project (internal_ai_data_analyst) runs on 25+ tables across sales, HR, finance, and telemetry. It has Corporate Memory, automated Telegram alerts, and natural-language SQL access. This is Keboola Verity, with Keboola as its own first customer. The proof point exists; it has not been packaged for the sale.</div>
+        <div class="confidence">Confidence: Known · Confirmed in project_overview.md</div>
+      </div>
+
+      <div class="truth-card violet">
+        <span class="number">06 / Real Problem</span>
+        <div class="claim">The real constraint is assembly and description, not construction.</div>
+        <div class="detail">Five layers exist across personal GitHub accounts, the Keboola org, and an internal GCP server. They are not described as a unified platform anywhere. The decision trace instrumentation is ~50 lines of code. What looks like a build problem is a positioning and instrumentation problem.</div>
+        <div class="confidence">Confidence: Known · Verified across four repo deep dives</div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <!-- SYSTEM MAP -->
+  <section id="sysmap">
+    <div class="section-label">Step 2 · System Map</div>
+    <h2>The Stack <strong>That Already Exists</strong></h2>
+
+    <p>These five layers form a coherent platform. They are scattered across a personal GitHub account, the Keboola org, and an internal server. They are not described as a unified platform anywhere.</p>
+
+    <div class="diagram-container">
+      <div class="diagram-title">Five-Layer Architecture · As-Built · March 2026</div>
+      <svg viewBox="0 0 980 520" xmlns="http://www.w3.org/2000/svg" style="width:100%; height:auto; display:block;">
+        <!-- Background -->
+        <rect width="980" height="520" fill="#fafaf7"/>
+
+        <!-- Layer labels on left -->
+        <text x="14" y="90" font-family="IBM Plex Mono" font-size="9" fill="#a4aaa8" letter-spacing="1">LAYER 1</text>
+        <text x="14" y="186" font-family="IBM Plex Mono" font-size="9" fill="#a4aaa8" letter-spacing="1">LAYER 2</text>
+        <text x="14" y="282" font-family="IBM Plex Mono" font-size="9" fill="#a4aaa8" letter-spacing="1">LAYER 3</text>
+        <text x="14" y="378" font-family="IBM Plex Mono" font-size="9" fill="#a4aaa8" letter-spacing="1">LAYER 4</text>
+        <text x="14" y="474" font-family="IBM Plex Mono" font-size="9" fill="#a4aaa8" letter-spacing="1">LAYER 5</text>
+
+        <!-- LAYER 1: Data Integration -->
+        <rect x="80" y="56" width="820" height="76" rx="7" fill="white" stroke="#e8e8e2" stroke-width="1"/>
+        <rect x="80" y="56" width="820" height="4" rx="2" fill="#2864dc"/>
+        <text x="108" y="82" font-family="IBM Plex Sans" font-size="13" font-weight="600" fill="#1a1a2c">keboola_jdbc</text>
+        <text x="108" y="97" font-family="IBM Plex Sans" font-size="11" font-weight="300" fill="#333542">Data engineers access the full operational graph from any SQL tool (DBeaver, DataGrip, VSCode)</text>
+        <text x="108" y="116" font-family="IBM Plex Mono" font-size="10" fill="#a4aaa8">_keboola.jobs  ·  _keboola.components  ·  _keboola.events  ·  _keboola.tables  ·  _keboola.buckets</text>
+        <!-- Small node indicators -->
+        <circle cx="856" cy="82" r="7" fill="none" stroke="#2864dc" stroke-width="1.5"/>
+        <circle cx="878" cy="82" r="7" fill="none" stroke="#2864dc" stroke-width="1.5"/>
+        <circle cx="900" cy="82" r="7" fill="none" stroke="#2864dc" stroke-width="1.5"/>
+        <text x="846" y="116" font-family="IBM Plex Mono" font-size="9" fill="#2864dc">DISTRIBUTION</text>
+
+        <!-- LAYER 2: Agent Interface -->
+        <rect x="80" y="152" width="820" height="76" rx="7" fill="white" stroke="#e8e8e2" stroke-width="1"/>
+        <rect x="80" y="152" width="820" height="4" rx="2" fill="#783cdc"/>
+        <text x="108" y="178" font-family="IBM Plex Sans" font-size="13" font-weight="600" fill="#1a1a2c">keboola_agent_cli</text>
+        <text x="108" y="193" font-family="IBM Plex Sans" font-size="11" font-weight="300" fill="#333542">AI agents manage Keboola across projects · built explicitly for Claude Code, Codex, Gemini</text>
+        <text x="108" y="212" font-family="IBM Plex Mono" font-size="10" fill="#a4aaa8">context  ·  branch (create/switch/merge)  ·  lineage show  ·  tool call  ·  llm export</text>
+        <text x="846" y="212" font-family="IBM Plex Mono" font-size="9" fill="#783cdc">AGENT SURFACE</text>
+
+        <!-- LAYER 3: Safe Execution (highlighted as THE key layer) -->
+        <rect x="80" y="248" width="820" height="76" rx="7" fill="#1a1a2c" stroke="#1a1a2c" stroke-width="1"/>
+        <rect x="80" y="248" width="820" height="4" rx="2" fill="#147864"/>
+        <text x="108" y="274" font-family="IBM Plex Sans" font-size="13" font-weight="600" fill="white">Keboola Connection — Production Branching</text>
+        <text x="108" y="289" font-family="IBM Plex Sans" font-size="11" font-weight="300" fill="rgba(255,255,255,0.7)">Full-isolation AI execution environment · on-demand materialization · diff view before merge</text>
+        <text x="108" y="308" font-family="IBM Plex Mono" font-size="10" fill="rgba(164,170,168,0.7)">THE SIMULATION ENVIRONMENT · already in production · needs AI-native framing + decision trace capture</text>
+        <rect x="820" y="263" width="62" height="22" rx="4" fill="none" stroke="#147864" stroke-width="1.5"/>
+        <text x="831" y="278" font-family="IBM Plex Mono" font-size="9" fill="#147864">MOAT</text>
+
+        <!-- LAYER 4: Compilation -->
+        <rect x="80" y="344" width="820" height="76" rx="7" fill="white" stroke="#e8e8e2" stroke-width="1"/>
+        <rect x="80" y="344" width="820" height="4" rx="2" fill="#8c503c"/>
+        <text x="108" y="370" font-family="IBM Plex Sans" font-size="13" font-weight="600" fill="#1a1a2c">Osiris</text>
+        <text x="108" y="385" font-family="IBM Plex Sans" font-size="11" font-weight="300" fill="#333542">Plain English → OML manifest → deterministic compiled pipeline · SHA-256 fingerprinted</text>
+        <text x="108" y="404" font-family="IBM Plex Mono" font-size="10" fill="#a4aaa8">AIOP: Evidence · Semantic · Narrative · Metadata  ·  best available decision memory substrate</text>
+        <text x="810" y="404" font-family="IBM Plex Mono" font-size="9" fill="#8c503c">DORMANT / 3MO GAP</text>
+
+        <!-- LAYER 5: Corporate Memory -->
+        <rect x="80" y="440" width="820" height="76" rx="7" fill="white" stroke="#e8e8e2" stroke-width="1"/>
+        <rect x="80" y="440" width="820" height="4" rx="2" fill="#783cdc"/>
+        <text x="108" y="466" font-family="IBM Plex Sans" font-size="13" font-weight="600" fill="#1a1a2c">KIDS — Internal AI Data Analyst</text>
+        <text x="108" y="481" font-family="IBM Plex Sans" font-size="11" font-weight="300" fill="#333542">Keboola's own CFO product · 25+ tables · natural-language SQL · Corporate Memory loop · session transcripts</text>
+        <text x="108" y="500" font-family="IBM Plex Mono" font-size="10" fill="#a4aaa8">6 active knowledge rules  ·  automated Telegram alerts  ·  unprocessed decision traces in sessions/</text>
+        <text x="816" y="500" font-family="IBM Plex Mono" font-size="9" fill="#783cdc">REFERENCE CUSTOMER</text>
+
+        <!-- Vertical connector line between layers -->
+        <line x1="490" y1="132" x2="490" y2="152" stroke="#a4aaa8" stroke-width="1" stroke-dasharray="3,3"/>
+        <line x1="490" y1="228" x2="490" y2="248" stroke="#a4aaa8" stroke-width="1" stroke-dasharray="3,3"/>
+        <line x1="490" y1="324" x2="490" y2="344" stroke="#a4aaa8" stroke-width="1" stroke-dasharray="3,3"/>
+        <line x1="490" y1="420" x2="490" y2="440" stroke="#a4aaa8" stroke-width="1" stroke-dasharray="3,3"/>
+      </svg>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <!-- DECISION MEMORY -->
+  <section id="memory">
+    <div class="section-label">Central Strategic Observation</div>
+    <h2>The Decision <strong>Memory Gap</strong></h2>
+
+    <p>The KIDS Corporate Memory loop already demonstrates the mechanism works. What exists is operational memory — SQL gotchas, data quirks, DuckDB tips. What is missing is decision memory: the reasoning behind analytical choices, what was tried and rejected, and why a specific threshold was set.</p>
+
+    <div class="loop-row" style="margin-top: 28px;">
+      <div class="loop-step exists">
+        <span class="step-num">01</span>
+        <div class="step-name">Operational Trace</div>
+        <div class="step-detail">AIOP in Osiris captures Evidence, Semantic, Narrative, Metadata after every run. What happened, when, by whom.</div>
+        <span class="step-badge badge-exists">Exists</span>
+      </div>
+      <div class="loop-step exists">
+        <span class="step-num">02</span>
+        <div class="step-name">Session Collection</div>
+        <div class="step-detail">KIDS SessionEnd hook auto-saves every conversation transcript to user/sessions/. Raw decision material exists.</div>
+        <span class="step-badge badge-exists">Exists · Unused</span>
+      </div>
+      <div class="loop-step exists">
+        <span class="step-num">03</span>
+        <div class="step-name">Knowledge Extraction</div>
+        <div class="step-detail">Corporate Memory processes CLAUDE.local.md files every 30 min, extracts voted rules, pushes to km_*.md.</div>
+        <span class="step-badge badge-exists">Exists · Narrow</span>
+      </div>
+      <div class="loop-step missing">
+        <span class="step-num">04</span>
+        <div class="step-name">Decision Trace Capture</div>
+        <div class="step-detail">Structured emit at branch merge: context received → action proposed → diff shown → human decision + rationale.</div>
+        <span class="step-badge badge-missing">Missing · ~50 lines</span>
+      </div>
+      <div class="loop-step missing">
+        <span class="step-num">05</span>
+        <div class="step-name">Decision Layer in AIOP</div>
+        <div class="step-detail">Fifth AIOP layer: what was proposed, what simulation showed, what was approved or rejected and why.</div>
+        <span class="step-badge badge-missing">Missing · Extension</span>
+      </div>
+      <div class="loop-step partial">
+        <span class="step-num">06</span>
+        <div class="step-name">Compounding Memory</div>
+        <div class="step-detail">Org-specific decision memory accumulates, making every next AI proposal more accurate for this specific environment.</div>
+        <span class="step-badge badge-partial">Partial · km_*.md</span>
+      </div>
+    </div>
+
+    <div class="callout callout-orange" style="margin-top: 24px;">
+      <h3 style="margin-top: 0; color: var(--orange);">Urgency</h3>
+      <p style="margin-bottom: 0;">Every day the decision trace capture is not in place, a permanent gap opens in the memory record. These traces cannot be reconstructed retroactively. Session transcripts in <code>user/sessions/</code> are being collected and sitting unused. The Corporate Memory extraction logic reads for SQL gotchas. It does not read for analytical decisions. This is a prompt engineering change to the extraction pipeline, not a new system.</p>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <!-- MARKET ASSUMPTIONS -->
+  <section id="assumptions">
+    <div class="section-label">Step 4 · Pavel Research Engine</div>
+    <h2>Market <strong>Assumptions</strong></h2>
+
+    <div class="assumption-row">
+      <div class="assumption-name">Battle won at model or agent layer</div>
+      <div class="assumption-detail">Most AI investment targets models and agent frameworks. The visible competition is between GPT-5, Claude, Gemini, and open-source alternatives. <strong>Fragility:</strong> Model capability is already sufficient for most enterprise data tasks. The constraint is integration, trust, and governance. The model layer is a commodity argument waiting to be confirmed by the next capability release.</div>
+      <div class="fragility-label fragility-high">HIGH<br>FRAGILITY</div>
+    </div>
+
+    <div class="assumption-row">
+      <div class="assumption-name">Data warehouses absorb the AI workflow layer</div>
+      <div class="assumption-detail">Snowflake and Databricks have scale, existing relationships, and are building AI features aggressively. <strong>Fragility:</strong> They understand tables, not workflows. A table has a schema. A workflow has lineage, ownership, runtime behavior, cost, dependencies, and blast radius. Building the workflow layer from scratch means instrumenting everything above storage — where Keboola already lives.</div>
+      <div class="fragility-label fragility-high">HIGH<br>FRAGILITY</div>
+    </div>
+
+    <div class="assumption-row">
+      <div class="assumption-name">CFO teams need better analytics tooling</div>
+      <div class="assumption-detail">Dashboards are slow, Excel is fragile, data is fragmented. <strong>Fragility:</strong> CFO teams don't need better analytics — they need a different operating model. Reconciliation continuous rather than periodic. Agents propose changes against real financial data. Every proposed journal entry can be reviewed against a diff before it touches the books.</div>
+      <div class="fragility-label fragility-high">HIGH<br>FRAGILITY</div>
+    </div>
+
+    <div class="assumption-row">
+      <div class="assumption-name">Enterprise AI adoption is a product education problem</div>
+      <div class="assumption-detail">Users need training and onboarding to adopt AI tools. <strong>Fragility:</strong> The real barrier is accountability. Nobody wants to approve an AI action they cannot trace. Simulation solves this by making the trace explicit before the action runs. This is an architecture problem, not an education problem.</div>
+      <div class="fragility-label fragility-medium">MEDIUM<br>FRAGILITY</div>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <!-- REAL CONSTRAINT -->
+  <section id="constraint">
+    <div class="section-label">Step 5 · Pavel Research Engine</div>
+    <h2>The Real <strong>Constraint</strong></h2>
+
+    <p>The visible constraint is "building a simulation environment is complex." The root constraint is different.</p>
+
+    <ul class="constraint-list">
+      <li>
+        <span class="constraint-rank">01</span>
+        <span class="constraint-label">Assembly &amp; Description</span>
+        <span class="constraint-detail">The pieces exist across five repositories and one internal project. The work is positioning and instrumentation, not construction. This is the primary constraint and the most immediately actionable.</span>
+      </li>
+      <li>
+        <span class="constraint-rank">02</span>
+        <span class="constraint-label">Simulation Fidelity</span>
+        <span class="constraint-detail">Simulation is only trusted if it accurately predicts real consequences. A simulation wrong 10% of the time is worse than none — it creates false confidence. Fidelity is a direct function of instrumentation depth. This is the true technical constraint under the assembly problem.</span>
+      </li>
+      <li>
+        <span class="constraint-rank">03</span>
+        <span class="constraint-label">Decision Trace Capture</span>
+        <span class="constraint-detail">Without structured recording of approve/reject decisions and their reasoning, the simulation runs but memory doesn't accumulate. Infrastructure to capture exists. The capture logic (~50 lines) does not.</span>
+      </li>
+      <li>
+        <span class="constraint-rank">04</span>
+        <span class="constraint-label">Founder Sequencing Alignment</span>
+        <span class="constraint-detail">Petr's March priority is context graph + data apps. Our research argues simulation instrumentation must begin now or decision traces are permanently lost. Explicit alignment needed on this sequencing tension.</span>
+      </li>
+      <li>
+        <span class="constraint-rank">05</span>
+        <span class="constraint-label">Agent Reasoning Quality</span>
+        <span class="constraint-detail">Most replaceable component. Listed last deliberately. The agent is the interface to the simulation environment, not the simulation environment itself. Model providers will commoditize agent reasoning. No one will commoditize your decision memory.</span>
+      </li>
+    </ul>
+  </section>
+
+  <hr class="section-divider">
+
+  <!-- CFO BEACHHEAD -->
+  <section id="cfo">
+    <div class="section-label">ICP Analysis · CFO / Finance</div>
+    <h2>The CFO <strong>Beachhead</strong></h2>
+
+    <p>The gemini-fi.html pitch deck (Keboola Verity) is mostly correct. Good data, honest problem frame, concrete before/after scenarios. Three structural reasons the CFO is the right wedge:</p>
+
+    <div class="truth-grid" style="margin: 28px 0;">
+      <div class="truth-card teal">
+        <span class="number">Buying Trigger 01</span>
+        <div class="claim">The mandate is already present</div>
+        <div class="detail">"CEO tells CFO to use Claude Code" — the buyer has pressure, the tool is named. Keboola's answer is: here is how Claude Code operates your financial data safely, with full auditability.</div>
+      </div>
+      <div class="truth-card teal">
+        <span class="number">Buying Trigger 02</span>
+        <div class="claim">SOX compliance makes simulation non-optional</div>
+        <div class="detail">In regulated finance, human-in-the-loop is not a UX preference — it's the audit trail requirement. The branching diff + approval record is the SOX-compliant AI deployment story. No one else has it.</div>
+      </div>
+      <div class="truth-card teal">
+        <span class="number">Buying Trigger 03</span>
+        <div class="claim">The comparison is not vs. Snowflake</div>
+        <div class="detail">CFO teams don't live in data warehouses. They live in NetSuite, Workday, Salesforce, Excel. The comparison is vs. Pigment, Mosaic FP&A — expensive, narrow, no non-financial data context.</div>
+      </div>
+      <div class="truth-card orange">
+        <span class="number">Missing from Deck</span>
+        <div class="claim">The mechanism slide is absent</div>
+        <div class="detail">The deck states "human-in-the-loop" as policy, never shows the mechanism. The missing slide: Reconciliation Agent proposes 12 journal entries → controller sees structured diff → approves subset → audit trail shows timestamp, actor, rationale. This is the slide that separates Keboola from every other AI-for-finance pitch.</div>
+      </div>
+    </div>
+
+    <div class="callout callout-teal">
+      <h3 style="margin-top: 0; color: var(--teal);">The One-Line Positioning</h3>
+      <p style="font-size: 16px; margin-bottom: 4px; font-style: italic;">"They need a data engineer between you and your data. We don't."</p>
+      <p style="margin-bottom: 0; font-size: 13px;">The simulation/branching layer is what makes this claim safe. Without it, "no data engineer required" means "no guardrails." With it, it means the agent shows you exactly what will happen before it does, and every approval is on record.</p>
+    </div>
+
+    <h3>The Missing Closer</h3>
+    <p>The deck ends: "The architecture for intelligent finance." It should end with the compounding argument: every close, every reconciliation, every budget variance processed makes the context graph more accurate for <em>your</em> chart of accounts, <em>your</em> contracts, <em>your</em> cost centers. That organizational specificity cannot be replicated by starting fresh on Snowflake. The data is portable. The context graph is not.</p>
+  </section>
+
+  <hr class="section-divider">
+
+  <!-- KIDS PROOF POINT -->
+  <section id="kids">
+    <div class="section-label">Internal Deployment · keboola/internal_ai_data_analyst</div>
+    <h2>KIDS <strong>— The Proof Point Inside the House</strong></h2>
+
+    <p>The internal_ai_data_analyst project (KIDS) is Keboola's own use of the platform to run internal analytics. It is also — without this being stated anywhere — the working reference implementation of the CFO product you are trying to sell.</p>
+
+    <div class="callout callout-violet" style="margin: 28px 0;">
+      <p style="font-weight: 400; color: var(--violet); margin-bottom: 8px; font-size: 14px;">What KIDS has already built:</p>
+      <p style="font-size: 13px; margin-bottom: 4px;">25+ tables across Salesforce, BambooHR, Keboola telemetry, Jira, and finance. Unified in DuckDB via Parquet views. Claude Code with schema.yml, metrics YAML, and data_description.md as structured context before every query. 6 automated notification agents monitoring multi-contract health, critical tickets, PAYG signups. Corporate Memory loop: analyst insight → extracted → voted on → pushed to every analyst's context automatically. Session transcripts collected at SessionEnd.</p>
+      <p style="margin-bottom: 0; font-size: 13px;"><strong>The metric YAML system is the most undervalued piece.</strong> It encodes institutional knowledge: total_amount ≠ MRR, contract status is "Activated" not "Active", revenue dates go to 2029. For a CFO customer, this is the chart-of-accounts logic layer that Snowflake cannot replicate without months of custom work.</p>
+    </div>
+
+    <h3>What KIDS Reveals About Decision Memory</h3>
+    <p>The Corporate Memory loop currently extracts operational knowledge: SQL gotchas, DuckDB quirks, data quality patterns. The session transcripts contain something richer — the reasoning behind analytical decisions. Why was a particular threshold set? What was tried and rejected? Why do we monitor 6 health dimensions specifically, and why these 10 clients?</p>
+    <p>That reasoning is in the transcripts. It is not being extracted. The extraction pipeline reads for technical gotchas. Expanding it to read for analytical decisions is a prompt engineering change.</p>
+
+    <div class="callout callout-navy">
+      <p><strong>The Sales Argument:</strong> "We built this for ourselves first. Here's what we learned. Here's what it looks like when it's been running for a year on real business data." This argument costs nothing and is impossible to fake. No competitor can say it.</p>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <!-- INVESTOR DESTROY TEST -->
+  <section id="investors">
+    <div class="section-label">Step 8 · Pavel Research Engine</div>
+    <h2>Investor <strong>Destroy Test</strong></h2>
+
+    <div class="qa-block">
+      <div class="qa-q"><span class="q-num">Q1</span>Snowflake and Databricks will build this. You'll be competing against companies with 10x the resources and the existing customer relationship.</div>
+      <div class="qa-a">They will build stack-native simulation. Snowflake will simulate within Snowflake. Databricks will simulate within the Lakehouse. Neither will build cross-stack simulation with faithful representation of heterogeneous operational graphs across NetSuite, Salesforce, Workday, Jira, and Coupa simultaneously. That requires the integration layer they don't have and won't prioritize — their business model rewards platform lock-in, not cross-stack completeness. The structural gap persists even after they ship a simulation feature. The CFO question is not "replace Snowflake" but "can this sit on top of my Snowflake?" If yes, the incumbent doesn't block the sale.
+        <span class="verdict">Verdict: Structural gap is real and durable. Evidence: Snowflake Cortex scope vs. cross-system CFO data reality.</span>
+      </div>
+    </div>
+
+    <div class="qa-block">
+      <div class="qa-q"><span class="q-num">Q2</span>Engineers will route around it. Nobody wants an AI agent approving things in production — your simulation just adds process friction to something people will bypass.</div>
+      <div class="qa-a">Real risk. The product must be genuinely excellent — blast-radius preview must prevent real incidents that engineers actually care about. "We saved you from writing to production" only matters if the near-miss is specific and visible. The KIDS notification system (Severity 1 tickets, 24-hour lookback, 6 health dimensions) is evidence that alerts work when specific enough to be actionable. The constraint is product quality, not product category.
+        <span class="verdict">Verdict: Real risk with a real answer. Product quality bar is high; not a theoretical concern.</span>
+      </div>
+    </div>
+
+    <div class="qa-block">
+      <div class="qa-q"><span class="q-num">Q3</span>No value before the decision memory is deep. You're asking customers to instrument and wait — that's a hard sell with no immediate ROI proof.</div>
+      <div class="qa-a">The simulation environment delivers value on day one. Even a shallow blast-radius preview — "this change affects 7 downstream tables and 3 pipelines" — is better than the current alternative of nothing. The value curve starts low and rises as the context graph deepens. Partial simulation is still better than no simulation. The compounding argument is for the renewal conversation, not the initial sale.
+        <span class="verdict">Verdict: Day-one value exists. Compounding is the retention argument, not the entry argument.</span>
+      </div>
+    </div>
+
+    <div class="qa-block">
+      <div class="qa-q"><span class="q-num">Q4</span>The political problem is the real constraint, not the technical one. Engineers won't approve AI changes regardless of simulation quality because no one wants accountability for AI decisions.</div>
+      <div class="qa-a">This steelman has force in consumer AI contexts. In regulated enterprise contexts, it inverts: the political problem is solved by making accountability documentable. "AI proposed, simulated against these specific consequences, these validation checks passed, this person approved at this timestamp" is an auditable record. In SOX-regulated finance, this is not optional — the audit trail is the product. The political objection dissolves when approval is documented and reasoning is traceable.
+        <span class="verdict">Verdict: Strong steelman that breaks at the regulatory layer. Finance is the right entry wedge for exactly this reason.</span>
+      </div>
+    </div>
+
+    <div class="qa-block">
+      <div class="qa-q"><span class="q-num">Q5</span>The market window is tight. If incumbents ship a simulation feature in 18 months, you move from "we have it" to "ours is deeper" — a harder enterprise conversation.</div>
+      <div class="qa-a">Accurate timing pressure. The fidelity curve must reach "trustworthy for production" before the category window closes. The answer is to use the window to accumulate instrumentation depth and decision memory — not to wait for the window to confirm itself. The 18-month clock is a reason to start decision trace instrumentation now, not a reason to defer it.
+        <span class="verdict">Verdict: Real timing risk. The correct response is urgency, not dismissal. Clock starts now.</span>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <!-- OPPORTUNITY MATRIX -->
+  <section id="opportunities">
+    <div class="section-label">Step 11 · Pavel Research Engine</div>
+    <h2>Opportunity <strong>Matrix</strong></h2>
+
+    <table class="matrix-table">
+      <thead>
+        <tr>
+          <th>Opportunity</th>
+          <th>Pain</th>
+          <th>Urgency</th>
+          <th>WTP</th>
+          <th>Defensibility</th>
+          <th>Time-to-Value</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><div class="opp-name">Simulation layer positioned as product surface</div>Connection branching reframed, AI-native, with decision trace capture</td>
+          <td><span class="pill pill-h">High</span></td>
+          <td><span class="pill pill-h">High</span></td>
+          <td><span class="pill pill-h">High</span></td>
+          <td><span class="pill pill-h">High</span></td>
+          <td><span class="pill pill-m">Medium</span></td>
+        </tr>
+        <tr>
+          <td><div class="opp-name">CFO / Finance vertical beachhead</div>Keboola Verity with human-in-the-loop mechanism slide + KIDS reference</td>
+          <td><span class="pill pill-h">High</span></td>
+          <td><span class="pill pill-h">High</span></td>
+          <td><span class="pill pill-h">High</span></td>
+          <td><span class="pill pill-m">Medium</span></td>
+          <td><span class="pill pill-m">Medium</span></td>
+        </tr>
+        <tr>
+          <td><div class="opp-name">Decision trace instrumentation</div>~50 lines in kbagent + AIOP extension + extraction logic update</td>
+          <td><span class="pill pill-h">High</span></td>
+          <td><span class="pill pill-h">High</span></td>
+          <td><span class="pill pill-l">Low*</span></td>
+          <td><span class="pill pill-h">High</span></td>
+          <td><span class="pill pill-h">Low effort</span></td>
+        </tr>
+        <tr>
+          <td><div class="opp-name">KIDS → packaged reference customer</div>Internal deployment reframed as first customer proof point</td>
+          <td><span class="pill pill-h">High</span></td>
+          <td><span class="pill pill-m">Medium</span></td>
+          <td><span class="pill pill-h">High</span></td>
+          <td><span class="pill pill-m">Medium</span></td>
+          <td><span class="pill pill-h">Low effort</span></td>
+        </tr>
+        <tr>
+          <td><div class="opp-name">Osiris modernization</div>LLM upgrade, state machine → Claude tool-use agent, simulation step</td>
+          <td><span class="pill pill-m">Medium</span></td>
+          <td><span class="pill pill-m">Medium</span></td>
+          <td><span class="pill pill-m">Medium</span></td>
+          <td><span class="pill pill-h">High</span></td>
+          <td><span class="pill pill-l">High effort</span></td>
+        </tr>
+      </tbody>
+    </table>
+    <p style="font-size: 12px; color: var(--line); margin-top: 8px;">* WTP low only because category doesn't exist yet. Once named, willingness to pay is high.</p>
+  </section>
+
+  <hr class="section-divider">
+
+  <!-- OPEN ITEMS -->
+  <section id="open">
+    <div class="section-label">Pending Decisions</div>
+    <h2>What Needs <strong>to Be Decided</strong></h2>
+
+    <div class="callout callout-blue" style="margin-bottom: 16px;">
+      <h3 style="margin-top: 0; color: var(--blue);">Strategic</h3>
+      <p style="margin-bottom: 4px;"><strong>Infrastructure vs. Application:</strong> Is Keboola the infrastructure the agent runs on, or is Keboola the agent itself? The codebase straddles both. The CFO pitch implies the latter. The simulation moat implies the former is more defensible. This cannot remain unresolved.</p>
+      <p style="margin-bottom: 0;"><strong>Vertical sequencing:</strong> Finance is the working hypothesis for regulated industry entry. The compliance-led sales motion (simulation + decision trace = audit infrastructure) may open doors faster than the productivity-led motion. Test this assumption explicitly.</p>
+    </div>
+
+    <div class="callout callout-orange" style="margin-bottom: 16px;">
+      <h3 style="margin-top: 0; color: var(--orange);">Urgent</h3>
+      <p style="margin-bottom: 4px;"><strong>Decision trace instrumentation:</strong> Who builds it, when. ~50 lines in kbagent + branch merge emit + AIOP extension. Every day this waits, traces are permanently destroyed.</p>
+      <p style="margin-bottom: 0;"><strong>Founder sequencing:</strong> Petr's March priority (context graph + data apps) vs. our research recommendation (decision trace capture must begin now). Requires explicit alignment — not because one is wrong but because the urgency differs.</p>
+    </div>
+
+    <div class="callout callout-teal">
+      <h3 style="margin-top: 0; color: var(--teal);">License &amp; Distribution</h3>
+      <p style="margin-bottom: 4px;"><strong>Apache 2.0 on Osiris:</strong> Fork risk becomes real if Osiris becomes strategically significant. The HashiCorp cautionary tale. License strategy must be decided before any OSS motion begins.</p>
+      <p style="margin-bottom: 0;"><strong>"Verity" product name:</strong> Currently doing no work in the deck. Introduced without explanation, disappears. Decision needed before any external motion begins.</p>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <!-- EXECUTIVE COMPRESSION -->
+  <section id="compression">
+    <div class="section-label">Step 12 · Executive Compression</div>
+    <h2>One-Slide <strong>Logic</strong></h2>
+
+    <div class="compression-grid">
+      <div class="comp-cell highlight">
+        <div class="cell-label">Hidden Truth</div>
+        <div class="cell-content">The simulation environment already exists. Connection branching is it. The moat is present, unpositioned, and uninstrumented for decision capture.</div>
+      </div>
+      <div class="comp-cell">
+        <div class="cell-label">Fragile Assumption</div>
+        <div class="cell-content">That context infrastructure is the moat. Context infrastructure is the layer <em>below</em> the moat. The moat is the decision memory that accumulates from every simulation the organization runs.</div>
+      </div>
+      <div class="comp-cell highlight">
+        <div class="cell-label">Real Constraint</div>
+        <div class="cell-content">Not construction. Assembly and description. The pieces exist. The decision trace hook is 50 lines. The positioning frame is a document.</div>
+      </div>
+      <div class="comp-cell">
+        <div class="cell-label">Attack Surface</div>
+        <div class="cell-content">Incumbents will build stack-native simulation. They will not build cross-stack, cross-domain simulation for the CFO who needs NetSuite + Salesforce + Workday + Ironclad simultaneously. That gap is structural.</div>
+      </div>
+      <div class="comp-cell highlight">
+        <div class="cell-label">Strategic Move</div>
+        <div class="cell-content">Position simulation as the product. Add the mechanism slide to the CFO deck. Instrument decision traces now. Package KIDS as the reference customer. Unify the five layers under one name.</div>
+      </div>
+      <div class="comp-cell">
+        <div class="cell-label">Kill Shot Risk</div>
+        <div class="cell-content">Simulation fidelity takes time to be trustworthy. A 10%-wrong simulation is worse than none. The window is ~18 months before incumbents ship shallow versions. The time to accumulate depth and memory is now.</div>
+      </div>
+    </div>
+
+    <div class="callout callout-navy" style="margin-top: 32px;">
+      <p style="font-size: 18px; font-weight: 300; line-height: 1.6; margin-bottom: 0;"><strong>The argument in one sentence:</strong> Keboola has built — without naming it — the only safe execution environment for AI agents in enterprise data operations, and the only system that can make every AI-proposed change auditable, reviewable, and organization-specifically smarter over time. The work now is to say so, instrument the proof, and sell it to the CFO whose CEO already told them to use Claude Code.</p>
+    </div>
+  </section>
+
+</main>
+
+<footer class="doc-footer">
+  <p>Pavel Deep Research Engine · Keboola Strategy Synthesis · March 2026</p>
+  <p>Sources: Osiris · keboola_agent_cli · keboola_jdbc · internal_ai_data_analyst · Connection branching docs · Verity CFO deck · Founder transcripts</p>
+</footer>
+
+</body>
+</html>
